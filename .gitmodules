@@ -1,0 +1,3 @@
+[submodule "rake/vendor/java_build_task"]
+	path = rake/vendor/java_build_task
+	url = git@github.com:freerangedata/java_build_task.git
