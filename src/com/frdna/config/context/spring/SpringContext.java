@@ -36,16 +36,21 @@ public class SpringContext extends AbstractContext {
     private ApplicationContext applicationContext = null;
 
     public SpringContext(Object environment, String name) {
+        String fileName = name;
+        if (fileName == null) {
+            fileName = "config.xml";
+        }
+
         GenericXmlApplicationContext applicationContext
             = new GenericXmlApplicationContext();
-        Log.info(this, "Loading SpringContext from [classpath:%s]", name);
-        applicationContext.load(new ClassPathResource(name));
+        Log.info(this, "Loading SpringContext from [classpath:%s]", fileName);
+        applicationContext.load(new ClassPathResource(fileName));
         if (environment != null) {
             Log.info(this, "Loading SpringContext from [classpath:%s/%s]",
                     environment,
-                    name);
+                    fileName);
             ClassPathResource resource = new ClassPathResource(
-                    String.valueOf(environment) + "/" + name);
+                    String.valueOf(environment) + "/" + fileName);
             if (resource.exists()) {
                 applicationContext.load(resource);
             } else {
@@ -63,7 +68,7 @@ public class SpringContext extends AbstractContext {
     }
 
     public SpringContext() {
-        this(null, "config.xml");
+        this(null);
     }
 
     public Object get(String name) {
