@@ -16,7 +16,7 @@ specific overrides.
     public class MyExample {
 
         public void doSomething() {
-            // Load the DataSource from configuration
+            // Load MyDao from configuration
             MyDao dao = Config.get(MyDao.class, "myDao");
             // Do stuff with the DAO
             // ...
